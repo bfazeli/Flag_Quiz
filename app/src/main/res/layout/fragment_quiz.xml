@@ -48,14 +48,16 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button2"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
     </LinearLayout>
 
     <LinearLayout
@@ -69,14 +71,16 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button3"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button4"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
     </LinearLayout>
 
     <LinearLayout
@@ -90,14 +94,16 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button5"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button6"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
     </LinearLayout>
 
     <LinearLayout
@@ -111,14 +117,16 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button7"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button8"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            style="@android:style/Widget.Material.Button.Colored"/>
     </LinearLayout>
 
     <TextView

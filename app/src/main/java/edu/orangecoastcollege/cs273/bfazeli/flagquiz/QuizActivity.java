@@ -11,6 +11,21 @@ import android.view.MenuItem;
 
 public class QuizActivity extends AppCompatActivity {
 
+    // Keys for reading data from SharedPreferences
+    public static final String CHOICES = "pref_numberOfChoices", REGIONS = "pref_regonsToInclude";
+
+    // Force portrait mode and check for preferences change
+    private boolean phoneDevice = true, preferences = true;
+
+    /**
+     * onCreate generates the appropriate layout to inflate, depending on the
+     * screen size. If the device is large or x-large, it will load the content_quiz.xml
+     * (sv700dp-land) which includes both the fragment_quiz.xml and fragment_settings.xml.
+     * Otherwise, it just inflates the standard content_main.xml with the fragment_quiz.
+     *
+     * All default preferences are set using the preferences.xml file.
+     * @param savedInstanceState The saved state to restore (not being used)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
