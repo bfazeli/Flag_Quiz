@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 public class QuizActivityFragment extends Fragment {
 
     public QuizActivityFragment() {
-    }
+    }Q
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
