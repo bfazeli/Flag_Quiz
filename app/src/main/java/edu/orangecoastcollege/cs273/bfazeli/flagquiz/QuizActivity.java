@@ -23,7 +23,7 @@ public class QuizActivity extends AppCompatActivity {
     public static final String CHOICES = "pref_numberOfChoices", REGIONS = "pref_regonsToInclude";
 
     // Force portrait mode and check for preferences change
-    private boolean phoneDevice = true, preferences = true;
+    private boolean phoneDevice = true, preferencesChanged = true;
 
     /**
      * onCreate generates the appropriate layout to inflate, depending on the
@@ -105,11 +105,10 @@ public class QuizActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private OnSharedPreferenceChangeListener preferencesChangeListener =
-            new OnsharedPreferenceChangeListener() {
+    private SharedPreferences.OnSharedPreferenceChangeListener preferencesChangeListener =
+            new SharedPreferences.OnSharedPreferenceChangeListener() {
                 @Override
-                public void onSharedPreferenceChanged(
-                        SharedPreferences sharedPreferences, String key) {
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                     preferencesChanged = true; // user changed app setting
 
                     QuizActivityFragment quizFragment = (QuizActivityFragment)
