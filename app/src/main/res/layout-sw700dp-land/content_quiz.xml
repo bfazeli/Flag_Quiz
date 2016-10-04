@@ -9,7 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:name="edu.orangecoastcollege.cs273.bfazeli.flagquiz.SettingsActivityFragment"
-        android:id="@+id/fragment2"
+        android:id="@+id/settingsActivityFragment"
         tools:layout="@layout/fragment_settings"
         android:layout_weight="1"/>
 

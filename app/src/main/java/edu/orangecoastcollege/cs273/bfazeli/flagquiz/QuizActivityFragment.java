@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.os.Handler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +26,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * QuizActivityFragment contains the Flag Quiz logic (correct/incorrect/statistics).
@@ -44,7 +43,7 @@ public class QuizActivityFragment extends Fragment {
     private List<String> quizCountriesList; // countries in current quiz
     private Set<String> regionsSet; // world regions in current quiz
     private String correctAnswer; // correct country for the current flag
-    private int totalGuesses; // number of quesses made
+    private int totalGuesses; // number of guesses made
     private int correctAnswers; // number of correct guesses
     private int guessRows; // number of rows displaying guess Buttons
     private SecureRandom random; // used to randomize the quiz
@@ -72,22 +71,7 @@ public class QuizActivityFragment extends Fragment {
         fileNameList = new ArrayList<>();
         quizCountriesList = new ArrayList<>();
         random = new SecureRandom();
-        handler = new Handler() {
-            @Override
-            public void close() {
-
-            }
-
-            @Override
-            public void flush() {
-
-            }
-
-            @Override
-            public void publish(LogRecord record) {
-
-            }
-        };
+        handler = new Handler();
 
         // get references to GUI components
         questionNumberTextView = (TextView) view.findViewById(R.id.questionNumberTextView);
@@ -251,11 +235,6 @@ public class QuizActivityFragment extends Fragment {
         ((Button) randomRow.getChildAt(column)).setText(countryName);
     }
 
-    // Parses the country flag file name and returns the country name
-    private String getCountryName(String name) {
-        return name.substring(name.indexOf('-') + 1).replace('_', ' ');
-    }
-
     /**
      * Called when a guess button is clicked. This listener is used for all buttons
      * in the flag quiz.
@@ -268,7 +247,7 @@ public class QuizActivityFragment extends Fragment {
             String answer = getCountryName(correctAnswer);
             ++totalGuesses; // increment number of guesses user has made
 
-            if (guess.equals(guess.equals(answer))) { // if the guess is correct
+            if (guess.equals(answer)) { // if the guess is correct
                 ++correctAnswers; // increment the number of correct answers
 
                 // display correct answer in green text
@@ -309,10 +288,37 @@ public class QuizActivityFragment extends Fragment {
                                     return builder.create(); // Return the AlertDialog
                                 }
                             };
+                    // Yse FragmentManager to display the DialogFragment
+                    quizResults.setCancelable(false);
+                    quizResults.show(getFragmentManager(), "quiz results");
                 }
+                else {  // answer is correct but quiz is not over
+                    // load the next flag after a 2-second delay
+                    handler.postDelayed (
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                   loadNextFlag();
+                                }
+                            }, 1000);  // 1000 milliseconds for 2-second delay
+                }
+            }
+            else { // answer was incorrect
+
+                // display "Incorrect!" in red
+                answerTextView.setText(R.string.incorrect_answer);
+                answerTextView.setTextColor(getResources().getColor(
+                        R.color.incorrect_answer, getContext().getTheme()));
+                guessButton.setEnabled(false); // disable incorrect answer
+
             }
         }
     };
+
+    // Parses the country flag file name and returns the country name
+    private String getCountryName(String name) {
+        return name.substring(name.indexOf('-') + 1).replace('_', ' ');
+    }
 
     // Utility method that disables all answer Buttons
     private void disableButtons() {
